@@ -25,7 +25,7 @@ public class RulesList extends VBox {
 
     public RulesList(Grammar grammar) {
         this.grammar = grammar;
-        label = new Label("Нетерминалы");
+        label = new Label("Правила");
 
         list = new VBox();
         scroll = new ScrollPane(list);
