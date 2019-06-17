@@ -11,11 +11,9 @@ import javafx.scene.layout.*;
 import ru.falaleev.core.grammar.Grammar;
 import ru.falaleev.core.grammar.Rule;
 import ru.falaleev.core.nonterminal.NonTerminal;
-import ru.falaleev.core.terminals.Terminal;
 import ru.falaleev.ui.util.UiUtil;
 
 import java.util.ArrayList;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class EditRuleDialog extends Dialog<Rule> {
@@ -41,9 +39,12 @@ public class EditRuleDialog extends Dialog<Rule> {
         grid.addColumn(3, pane(selectRightBtn), pane(rightSelected));
 
         selectLeftBtn.setOnMouseClicked(event ->
-                new SelectDialog<>(new ArrayList<>(this.grammar.getNonTerminalAlphabet().getNonterminals().values()))
-                        .showAndWait()
-                        .ifPresent(s -> leftSelected.setText(s.getName())));
+                new SelectDialog<>(this.grammar.getNonTerminalAlphabet()
+                        .getNonterminals().values()
+                        .stream()
+                        .filter(nt -> !nt.equals(NonTerminal.FAIL) && !nt.equals(NonTerminal.FINAL))
+                        .collect(Collectors.toList())
+                ).showAndWait().ifPresent(s -> leftSelected.setText(s.getName())));
 
         selectTerminalBtn.setOnMouseClicked(event ->
                 new SelectDialog<>(new ArrayList<>(this.grammar.getTerminalAlphabet().getTerminals().values()))
@@ -55,7 +56,7 @@ public class EditRuleDialog extends Dialog<Rule> {
                         .showAndWait()
                         .ifPresent(nonTerminal -> rightSelected.setText(nonTerminal.getName())));
 
-        if(item!=null) {
+        if (item != null) {
             leftSelected.setText(item.getLeft());
             terminalSelected.setText(item.getTerminal());
             rightSelected.setText(item.getRight());
@@ -79,7 +80,7 @@ public class EditRuleDialog extends Dialog<Rule> {
             if (existingRule != null && existingRule != this.item) {
                 UiUtil.alert("Правило с такими же левой частью и терминалом уже есть в грамматике!");
                 this.item = null;
-            } else if(this.item==null || !this.item.getLeft().equals(leftSelected.getText()) || !this.item.getTerminal().equals(terminalSelected.getText())) {
+            } else if (this.item == null || !this.item.getLeft().equals(leftSelected.getText()) || !this.item.getTerminal().equals(terminalSelected.getText())) {
                 this.item = new Rule(leftSelected.getText(), terminalSelected.getText(), rightSelected.getText());
             } else {
                 this.item.setRight(rightSelected.getText());

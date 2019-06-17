@@ -29,13 +29,13 @@ public class TerminalWidget extends BorderPane {
         editBtn.setAlignment(Pos.BASELINE_RIGHT);
         editBtn.setOnMouseClicked(event -> {
             AbstractTerminalEditDialog<? extends Terminal, ? extends Pane> dialog;
-            if(this.terminal instanceof CharacterTerminal) {
+            if (this.terminal instanceof CharacterTerminal) {
                 dialog = new CharacterTerminalEditDialog(this.list.getAlphabet(), (CharacterTerminal) this.terminal);
-            } else if(this.terminal instanceof RangeTerminal) {
+            } else if (this.terminal instanceof RangeTerminal) {
                 dialog = new RangeTerminalEditDialog(this.list.getAlphabet(), (RangeTerminal) this.terminal);
-            } else if(this.terminal instanceof SetTerminal) {
+            } else if (this.terminal instanceof SetTerminal) {
                 dialog = new SetTerminalEditDialog(this.list.getAlphabet(), (SetTerminal) this.terminal);
-            } else if(this.terminal instanceof CombinedTerminal) {
+            } else if (this.terminal instanceof CombinedTerminal) {
                 dialog = new CombinedTerminalEditDialog(this.list.getAlphabet(), (CombinedTerminal) this.terminal);
             } else {
                 return;

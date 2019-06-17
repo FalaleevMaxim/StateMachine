@@ -5,7 +5,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import ru.falaleev.core.alphabets.TerminalAlphabet;
 import ru.falaleev.core.terminals.SetTerminal;
 import ru.falaleev.ui.forms.CharacterAddDialog;
 import ru.falaleev.ui.util.UiUtil;
@@ -43,13 +42,13 @@ public class CharacterSetFieldset extends VBox {
 
         getChildren().addAll(UiUtil.hCenter(label), scroll, UiUtil.hCenter(addBtn));
 
-        if(item!=null) {
+        if (item != null) {
             item.getChars().forEach(this::addCharacter);
         }
     }
 
     public void addCharacter(Character character) {
-        if(characters.add(character)) {
+        if (characters.add(character)) {
             list.getChildren().add(new CharacterItemWidget(this, character));
         }
     }

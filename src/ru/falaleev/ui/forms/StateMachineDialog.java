@@ -43,7 +43,7 @@ public class StateMachineDialog extends Dialog<String> {
 
             movesOutput.getItems().clear();
             movesOutput.getItems().addAll(moves);
-            resultOutput.setText("Цепочка " + (result?"":"не ") + "принадлежит языку");
+            resultOutput.setText("Цепочка " + (result ? "" : "не ") + "принадлежит языку");
         });
 
         VBox content = new VBox(input, UiUtil.hCenter(recognizeBtn), resultOutput, listScroll);

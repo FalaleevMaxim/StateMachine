@@ -92,7 +92,7 @@ public class StateMachine {
         for (char c : s.toCharArray()) {
             Map<Terminal, NonTerminal> rulesForCurrentState = rules.get(current);
 
-            class TerminalHolder{
+            class TerminalHolder {
                 private Terminal terminal;
             }
             TerminalHolder holder = new TerminalHolder();
@@ -129,7 +129,7 @@ public class StateMachine {
      */
     public boolean isLastFinal(List<StateMachineMove> moves) {
         StateMachineMove lastMove = moves.get(moves.size() - 1);
-        if(lastMove.to!=null) return lastMove.to.isFinal();
+        if (lastMove.to != null) return lastMove.to.isFinal();
         return lastMove.from.isFinal();
     }
 }

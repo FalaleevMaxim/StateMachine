@@ -42,7 +42,7 @@ public class Main {
 
         List<StateMachineMove> states = stateMachine.process("+123.45");
         System.out.println("Trace:\n" + states.toString()
-                .replaceAll(",","\n")
+                .replaceAll(",", "\n")
                 .replaceFirst("\\[", "")
                 .replaceFirst("]", ""));
         System.out.println("Result: " + stateMachine.isLastFinal(states));

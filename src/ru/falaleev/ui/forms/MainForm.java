@@ -47,13 +47,13 @@ public class MainForm extends VBox {
         createMachineBtn.setOnMouseClicked(event -> {
             try {
                 new StateMachineDialog(new StateMachine(grammar)).showAndWait();
-            } catch (RuntimeException e){
+            } catch (RuntimeException e) {
                 UiUtil.alert(e);
             }
         });
 
         HBox createBtnBox = UiUtil.hCenter(createMachineBtn);
-        createBtnBox.setPadding(new Insets(5,0,0,5));
+        createBtnBox.setPadding(new Insets(5, 0, 0, 5));
 
         getChildren().addAll(createBtnBox, alphabetsAndRules, rulesList);
     }

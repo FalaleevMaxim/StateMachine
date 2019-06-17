@@ -35,8 +35,8 @@ public class TerminalsList extends VBox {
         addBtn.setAlignment(Pos.BASELINE_CENTER);
         addBtn.setOnMouseClicked(event ->
                 new CreateTerminalDialog(this.alphabet)
-                    .showAndWait()
-                    .ifPresent(this::addTerminal));
+                        .showAndWait()
+                        .ifPresent(this::addTerminal));
 
         getChildren().addAll(UiUtil.hCenter(label), scroll, UiUtil.hCenter(addBtn));
 

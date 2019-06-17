@@ -4,18 +4,15 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import ru.falaleev.core.alphabets.NonTerminalAlphabet;
 import ru.falaleev.core.alphabets.TerminalAlphabet;
 import ru.falaleev.core.grammar.Grammar;
 import ru.falaleev.core.grammar.Rule;
-import ru.falaleev.core.nonterminal.NonTerminal;
 import ru.falaleev.ui.forms.EditRuleDialog;
 import ru.falaleev.ui.util.UiUtil;
 
-import java.util.HashSet;
 import java.util.Set;
 
 public class RulesList extends VBox {
@@ -41,14 +38,13 @@ public class RulesList extends VBox {
         addBtn.setAlignment(Pos.BASELINE_CENTER);
         addBtn.setOnMouseClicked(event ->
                 new EditRuleDialog(this.grammar, null)
-                    .showAndWait()
-                    .ifPresent(this::addRule));
-
+                        .showAndWait()
+                        .ifPresent(this::addRule));
 
         getChildren().addAll(UiUtil.hCenter(label), scroll, UiUtil.hCenter(addBtn));
 
         grammar.getRules().forEach(nonTerminal ->
-                        list.getChildren().add(new RuleWidget(this, nonTerminal)));
+                list.getChildren().add(new RuleWidget(this, nonTerminal)));
     }
 
     public void addRule(Rule rule) {

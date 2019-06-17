@@ -9,7 +9,7 @@ import ru.falaleev.ui.forms.MainForm;
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) {
         Parent root = new MainForm();
         primaryStage.setTitle("State machine builder");
         primaryStage.setScene(new Scene(root, 800, 600));

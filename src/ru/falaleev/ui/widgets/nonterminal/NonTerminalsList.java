@@ -4,7 +4,6 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import ru.falaleev.core.alphabets.NonTerminalAlphabet;
@@ -35,9 +34,8 @@ public class NonTerminalsList extends VBox {
         addBtn.setAlignment(Pos.BASELINE_CENTER);
         addBtn.setOnMouseClicked(event ->
                 new EditNonterminalDialog(this.alphabet, null)
-                    .showAndWait()
-                    .ifPresent(this::addNonTerminal));
-
+                        .showAndWait()
+                        .ifPresent(this::addNonTerminal));
 
         getChildren().addAll(UiUtil.hCenter(label), scroll, UiUtil.hCenter(addBtn));
 
@@ -53,7 +51,7 @@ public class NonTerminalsList extends VBox {
 
     public void remove(NonTerminalWidget nonTerminalWidget) {
         NonTerminal item = nonTerminalWidget.getNonTerminal();
-        if(NonTerminal.BASIC_ALPHABET.contains(item)) {
+        if (NonTerminal.BASIC_ALPHABET.contains(item)) {
             UiUtil.alert("Нельзя удалять базовые нетерминалы");
             return;
         }

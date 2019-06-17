@@ -81,9 +81,9 @@ public class CreateTerminalDialog extends Dialog<Terminal> {
             Tab selected = tabPane.selectionModelProperty().get().getSelectedItem();
 
             try {
-                if(name.isEmpty() && selected==characterTab) {
+                if (name.isEmpty() && selected == characterTab) {
                     Character c = characterFieldset.getChar();
-                    name =String.valueOf(c);
+                    name = String.valueOf(c);
                 }
                 Utils.checkName(name);
             } catch (RuntimeException e) {
@@ -91,7 +91,7 @@ public class CreateTerminalDialog extends Dialog<Terminal> {
                 return;
             }
 
-            if(alphabet.contains(name)) {
+            if (alphabet.contains(name)) {
                 UiUtil.alert("Алфавит уже содержит нетерминал с таким именем!");
                 return;
             }
@@ -107,11 +107,11 @@ public class CreateTerminalDialog extends Dialog<Terminal> {
                         break;
                     case SET_TAB_NAME:
                         Set<Character> characters = characterSetFieldset.getCharacters();
-                        if(characters.isEmpty()) {
+                        if (characters.isEmpty()) {
                             UiUtil.alert("Нет символов в наборе!");
                             return;
                         }
-                        if(characters.size()==1) {
+                        if (characters.size() == 1) {
                             UiUtil.alert("Для распознавания одного символа воспользуйтесь вкладкой \"Символ\"");
                             return;
                         }
@@ -119,11 +119,11 @@ public class CreateTerminalDialog extends Dialog<Terminal> {
                         break;
                     case COMBINED_TAB_NAME:
                         Set<Terminal> combined = combinedFieldset.getCombined();
-                        if(combined.isEmpty()) {
+                        if (combined.isEmpty()) {
                             UiUtil.alert("Нет скомбинированных терминалов!");
                             return;
                         }
-                        if(combined.size()==1) {
+                        if (combined.size() == 1) {
                             UiUtil.alert("Создавать комбинированный терминал из 1 терминала не имеет смысла");
                             return;
                         }

@@ -37,8 +37,9 @@ public class NonTerminal implements Serializable {
     }
 
     public void setFinal(boolean aFinal) {
-        if(aFinal && isFail()) throw new IllegalStateException("NonTerminal 'Fail' must not be final");
-        if(aFinal && FINAL.getName().equals(name)) throw new IllegalStateException("NonTerminal 'Final' must be final");
+        if (aFinal && isFail()) throw new IllegalStateException("NonTerminal 'Fail' must not be final");
+        if (aFinal && FINAL.getName().equals(name))
+            throw new IllegalStateException("NonTerminal 'Final' must be final");
         isFinal = aFinal;
     }
 

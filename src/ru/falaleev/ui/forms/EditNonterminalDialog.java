@@ -27,10 +27,10 @@ public class EditNonterminalDialog extends Dialog<NonTerminal> {
         HBox content = new HBox();
         content.getChildren().addAll(new Label("Имя: "), nameField, isFinal);
 
-        if(item!=null) {
+        if (item != null) {
             nameField.setText(item.getName());
             isFinal.setSelected(item.isFinal());
-            if( NonTerminal.BASIC_ALPHABET.contains(item) ) {
+            if (NonTerminal.BASIC_ALPHABET.contains(item)) {
                 nameField.setDisable(true);
             }
 
@@ -49,7 +49,7 @@ public class EditNonterminalDialog extends Dialog<NonTerminal> {
         saveBtn = new Button("Сохранить");
 
         setOnCloseRequest(event -> {
-            if(created) setResult(item);
+            if (created) setResult(item);
             else setResult(null);
         });
 
@@ -62,11 +62,11 @@ public class EditNonterminalDialog extends Dialog<NonTerminal> {
                 return;
             }
 
-            if((item==null || !item.getName().equals(name)) && alphabet.contains(name)) {
+            if ((item == null || !item.getName().equals(name)) && alphabet.contains(name)) {
                 UiUtil.alert("Алфавит уже содержит нетерминал с таким именем!");
                 return;
             }
-            if(item==null || !item.getName().equals(name)) {
+            if (item == null || !item.getName().equals(name)) {
                 item = new NonTerminal(name, isFinal.isSelected());
                 created = true;
             } else {

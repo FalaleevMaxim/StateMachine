@@ -13,8 +13,8 @@ public class StateMachineMove {
     public final NonTerminal to;
 
     public StateMachineMove(NonTerminal from, char terminalChar, Terminal terminal, NonTerminal to) {
-        if(from==null) throw new IllegalArgumentException("From can not be null");
-        if(terminal!=null && to==null) to = NonTerminal.FAIL;
+        if (from == null) throw new IllegalArgumentException("From can not be null");
+        if (terminal != null && to == null) to = NonTerminal.FAIL;
         this.from = from;
         this.terminalChar = terminalChar;
         this.terminal = terminal;
@@ -27,7 +27,7 @@ public class StateMachineMove {
 
     @Override
     public String toString() {
-        if(terminal==null) return "Start with "+from;
+        if (terminal == null) return "Start with " + from;
         return "From " + from + " by '" + terminalChar + "' (" + terminal + ") to " + to;
     }
 }

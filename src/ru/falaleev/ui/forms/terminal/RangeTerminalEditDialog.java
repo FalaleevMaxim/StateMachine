@@ -16,4 +16,3 @@ public class RangeTerminalEditDialog extends AbstractTerminalEditDialog<RangeTer
         super(item, new RangeFieldset(item), alphabet, CREATE_FROM_FIELDSET, EDIT_FROM_FIELDSET);
     }
 }
-

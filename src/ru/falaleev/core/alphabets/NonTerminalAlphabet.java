@@ -32,7 +32,7 @@ public class NonTerminalAlphabet implements Serializable {
 
     public void remove(String nonTerminalName) {
         //Нельзя удалить стартовый нетерминал S
-        if (NonTerminal.BASIC_ALPHABET.stream().anyMatch(nt->nt.getName().equals(nonTerminalName)))
+        if (NonTerminal.BASIC_ALPHABET.stream().anyMatch(nt -> nt.getName().equals(nonTerminalName)))
             throw new IllegalArgumentException("You can not remove basic nonterminals");
         nonterminals.remove(nonTerminalName);
     }

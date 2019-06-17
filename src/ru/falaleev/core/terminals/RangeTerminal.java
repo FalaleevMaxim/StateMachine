@@ -1,7 +1,6 @@
 package ru.falaleev.core.terminals;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
  * Терминал, проверяющий диапазон символов

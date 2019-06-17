@@ -52,13 +52,13 @@ public class CombinedFieldset extends VBox {
 
         getChildren().addAll(UiUtil.hCenter(label), scroll, UiUtil.hCenter(addBtn));
 
-        if(item!=null) {
+        if (item != null) {
             item.getCombinedTerminals().forEach(this::addTerminal);
         }
     }
 
     public void addTerminal(Terminal terminal) {
-        if(combined.add(terminal)) {
+        if (combined.add(terminal)) {
             list.getChildren().add(new CombinedTerminalItemWidget(this, terminal));
         }
     }

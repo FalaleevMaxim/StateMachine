@@ -36,7 +36,7 @@ public class RuleWidget extends BorderPane {
         editBtn.setAlignment(Pos.BASELINE_RIGHT);
         editBtn.setOnMouseClicked(event -> {
             Optional<Rule> edited = new EditRuleDialog(this.list.getGrammar(), this.rule).showAndWait();
-            if(edited.isPresent()) {
+            if (edited.isPresent()) {
                 this.list.getGrammar().removeRule(this.rule);
                 rule.setLeft(edited.get().getLeft());
                 rule.setTerminal(edited.get().getTerminal());

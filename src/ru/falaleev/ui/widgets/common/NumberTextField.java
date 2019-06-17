@@ -2,8 +2,7 @@ package ru.falaleev.ui.widgets.common;
 
 import javafx.scene.control.TextField;
 
-public class NumberTextField extends TextField
-{
+public class NumberTextField extends TextField {
     private boolean hex;
 
     public NumberTextField() {
@@ -11,32 +10,27 @@ public class NumberTextField extends TextField
 
     public NumberTextField(String text) {
         super(text);
-        if(!validate(text)){
+        if (!validate(text)) {
             setText("");
         }
     }
 
     @Override
-    public void replaceText(int start, int end, String text)
-    {
-        if (validate(text))
-        {
+    public void replaceText(int start, int end, String text) {
+        if (validate(text)) {
             super.replaceText(start, end, text);
         }
     }
 
     @Override
-    public void replaceSelection(String text)
-    {
-        if (validate(text))
-        {
+    public void replaceSelection(String text) {
+        if (validate(text)) {
             super.replaceSelection(text);
         }
     }
 
-    public boolean validate(String text)
-    {
-        return text.matches(hex?"[0-9a-fA-F]*":"[0-9]*");
+    public boolean validate(String text) {
+        return text.matches(hex ? "[0-9a-fA-F]*" : "[0-9]*");
     }
 
     public boolean isHex() {
@@ -44,8 +38,8 @@ public class NumberTextField extends TextField
     }
 
     public void setHex(boolean hex) {
-        if(this.hex==hex) return;
-        if(getText().isEmpty()) {
+        if (this.hex == hex) return;
+        if (getText().isEmpty()) {
             this.hex = hex;
         } else {
             String text = getText();

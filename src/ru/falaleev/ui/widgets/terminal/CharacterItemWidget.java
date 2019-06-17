@@ -19,7 +19,7 @@ public class CharacterItemWidget extends BorderPane {
         textLabel.setAlignment(Pos.BASELINE_LEFT);
 
         String text = Integer.toString(character);
-        if(Character.isBmpCodePoint(character)) text+= " ('"+character+"')";
+        if (Character.isBmpCodePoint(character)) text += " ('" + character + "')";
         textLabel.setText(text);
         setStyle("-fx-border-width: 1px; -fx-border-color: black");
 

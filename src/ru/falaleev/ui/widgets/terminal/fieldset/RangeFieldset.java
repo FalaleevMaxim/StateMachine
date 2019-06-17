@@ -25,11 +25,11 @@ public class RangeFieldset extends VBox {
         getChildren().addAll(fromFieldset, toFieldset);
     }
 
-    public char getFrom(){
+    public char getFrom() {
         return fromFieldset.getChar();
     }
 
-    public char getTo(){
+    public char getTo() {
         return toFieldset.getChar();
     }
 }
