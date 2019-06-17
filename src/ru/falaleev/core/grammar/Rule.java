@@ -1,14 +1,14 @@
-package ru.falaleev.grammar;
+package ru.falaleev.core.grammar;
 
-import ru.falaleev.nonterminal.NonTerminal;
-import ru.falaleev.terminals.Terminal;
+import ru.falaleev.core.nonterminal.NonTerminal;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * Правило вида A->aB, где S и B - нетерминалы, a - терминал
  */
-public class Rule {
+public class Rule implements Serializable {
     /**
      * Имя нетерминала в левой стороне правила
      */
@@ -41,6 +41,26 @@ public class Rule {
 
     public String getRight() {
         return right;
+    }
+
+    /**
+     * Небезопасно! Поле участвует в equals и hashCode.
+     * Удалить правило из грамматики перед изменением этого поля!
+     */
+    public void setLeft(String left) {
+        this.left = left;
+    }
+
+    /**
+     * Небезопасно! Поле участвует в equals и hashCode.
+     * Удалить правило из грамматики перед изменением этого поля!
+     */
+    public void setTerminal(String terminal) {
+        this.terminal = terminal;
+    }
+
+    public void setRight(String right) {
+        this.right = right;
     }
 
     /**

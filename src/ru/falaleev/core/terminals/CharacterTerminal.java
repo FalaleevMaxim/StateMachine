@@ -1,11 +1,12 @@
-package ru.falaleev.terminals;
+package ru.falaleev.core.terminals;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * Реализация терминала, проверяющая конкретный символ.
  */
-public class CharacterTerminal extends Terminal {
+public class CharacterTerminal extends Terminal implements Serializable {
     private char c;
 
     /**
@@ -39,17 +40,7 @@ public class CharacterTerminal extends Terminal {
         this.c = c;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof CharacterTerminal)) return false;
-        if (!super.equals(o)) return false;
-        CharacterTerminal that = (CharacterTerminal) o;
-        return c == that.c;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), c);
+    public char getChar() {
+        return c;
     }
 }

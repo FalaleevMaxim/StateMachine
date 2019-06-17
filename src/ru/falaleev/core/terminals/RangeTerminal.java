@@ -1,11 +1,12 @@
-package ru.falaleev.terminals;
+package ru.falaleev.core.terminals;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * Терминал, проверяющий диапазон символов
  */
-public class RangeTerminal extends Terminal {
+public class RangeTerminal extends Terminal implements Serializable {
     private char from;
     private char to;
 
@@ -35,20 +36,5 @@ public class RangeTerminal extends Terminal {
 
     public void setTo(char to) {
         this.to = to;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof RangeTerminal)) return false;
-        if (!super.equals(o)) return false;
-        RangeTerminal that = (RangeTerminal) o;
-        return getFrom() == that.getFrom() &&
-                getTo() == that.getTo();
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), getFrom(), getTo());
     }
 }

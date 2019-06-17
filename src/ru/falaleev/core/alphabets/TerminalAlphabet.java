@@ -1,13 +1,14 @@
-package ru.falaleev.alphabets;
+package ru.falaleev.core.alphabets;
 
-import ru.falaleev.terminals.Terminal;
+import ru.falaleev.core.terminals.Terminal;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
  * Алфавит терминалов
  */
-public class TerminalAlphabet {
+public class TerminalAlphabet implements Serializable {
     private final Map<String, Terminal> terminals = new HashMap<>();
 
     public TerminalAlphabet(Terminal... terminals) {

@@ -1,7 +1,8 @@
-package ru.falaleev.alphabets;
+package ru.falaleev.core.alphabets;
 
-import ru.falaleev.nonterminal.NonTerminal;
+import ru.falaleev.core.nonterminal.NonTerminal;
 
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -9,14 +10,13 @@ import java.util.Map;
 /**
  * Алфавит нетерминалов
  */
-public class NonTerminalAlphabet {
+public class NonTerminalAlphabet implements Serializable {
     private final Map<String, NonTerminal> nonterminals = new HashMap<>();
 
-    /**
-     * Изначально содердит стартовый нетерминал S
-     */
     public NonTerminalAlphabet() {
-        nonterminals.put("S", NonTerminal.S);
+        for (NonTerminal nonTerminal : NonTerminal.BASIC_ALPHABET) {
+            nonterminals.put(nonTerminal.getName(), nonTerminal);
+        }
     }
 
     public Map<String, NonTerminal> getNonterminals() {
@@ -32,7 +32,8 @@ public class NonTerminalAlphabet {
 
     public void remove(String nonTerminalName) {
         //Нельзя удалить стартовый нетерминал S
-        if ("S".equals(nonTerminalName)) throw new IllegalArgumentException("You can not remove start nonterminal S");
+        if (NonTerminal.BASIC_ALPHABET.stream().anyMatch(nt->nt.getName().equals(nonTerminalName)))
+            throw new IllegalArgumentException("You can not remove basic nonterminals");
         nonterminals.remove(nonTerminalName);
     }
 

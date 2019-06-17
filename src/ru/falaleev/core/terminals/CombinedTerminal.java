@@ -1,19 +1,22 @@
-package ru.falaleev.terminals;
+package ru.falaleev.core.terminals;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.io.Serializable;
+import java.util.*;
 
 /**
  * Комбинарует несколько терминалов.
  * Проверяет что символ соответствует хотя бы одному из терминалов.
  */
-public class CombinedTerminal extends Terminal {
+public class CombinedTerminal extends Terminal implements Serializable {
     private final List<Terminal> combined;
 
-    public CombinedTerminal(String name, Terminal... combined) {
+    public CombinedTerminal(String name, Collection<Terminal> combined) {
         super(name);
-        this.combined = Arrays.asList(combined);
+        this.combined = new ArrayList<>(combined);
+    }
+
+    public CombinedTerminal(String name, Terminal... combined) {
+        this(name, Arrays.asList(combined));
     }
 
     @Override
@@ -32,10 +35,5 @@ public class CombinedTerminal extends Terminal {
         if (!super.equals(o)) return false;
         CombinedTerminal that = (CombinedTerminal) o;
         return combined.equals(that.combined);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), combined);
     }
 }

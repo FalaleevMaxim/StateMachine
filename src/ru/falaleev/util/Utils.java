@@ -11,7 +11,7 @@ public final class Utils {
                 .mapToObj(i -> (char) i)
                 .allMatch(((Predicate<Character>) Character::isLetterOrDigit).or(c -> c.equals('_')));
         if (!validName) {
-            throw new IllegalArgumentException("Name must contain only letters or digits");
+            throw new IllegalArgumentException("Name must contain only letters, digits and underlines");
         }
     }
 }

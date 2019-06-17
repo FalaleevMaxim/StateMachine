@@ -1,11 +1,13 @@
-package ru.falaleev.terminals;
+package ru.falaleev.core.terminals;
 
 import ru.falaleev.util.Utils;
+
+import java.io.Serializable;
 
 /**
  * Базовый класс тертинала. Имеет имя и метод проверки, является ли символ этим терминалом
  */
-public abstract class Terminal {
+public abstract class Terminal implements Serializable {
     private String name;
 
     public Terminal(String name) {
@@ -18,6 +20,10 @@ public abstract class Terminal {
         return name;
     }
 
+    /**
+     * Небезопасно! Поле участвует в equals и hashCode.
+     * Удалить терминал из алфавита перед изменением этого поля!
+     */
     public void setName(String name) {
         Utils.checkName(name);
         this.name = name;

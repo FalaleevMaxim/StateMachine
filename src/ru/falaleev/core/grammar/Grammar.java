@@ -1,9 +1,10 @@
-package ru.falaleev.grammar;
+package ru.falaleev.core.grammar;
 
-import ru.falaleev.alphabets.NonTerminalAlphabet;
-import ru.falaleev.alphabets.TerminalAlphabet;
-import ru.falaleev.nonterminal.NonTerminal;
+import ru.falaleev.core.alphabets.NonTerminalAlphabet;
+import ru.falaleev.core.alphabets.TerminalAlphabet;
+import ru.falaleev.core.nonterminal.NonTerminal;
 
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,7 +13,7 @@ import java.util.stream.Collectors;
 /**
  * Грамматика. Содержит алфавит терминалов и нетерминалов и множество правил.
  */
-public final class Grammar {
+public final class Grammar implements Serializable {
     /**
      * Алфавит нетерминалов
      */
@@ -54,6 +55,10 @@ public final class Grammar {
      */
     public void removeRule(String left, String terminal) {
         rules.removeIf(rule -> rule.getLeft().equals(left) && rule.getTerminal().equals(terminal));
+    }
+
+    public void removeRule(Rule rule) {
+        rules.remove(rule);
     }
 
     /**

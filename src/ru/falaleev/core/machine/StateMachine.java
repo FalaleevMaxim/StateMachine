@@ -1,11 +1,11 @@
-package ru.falaleev.machine;
+package ru.falaleev.core.machine;
 
-import ru.falaleev.alphabets.NonTerminalAlphabet;
-import ru.falaleev.alphabets.TerminalAlphabet;
-import ru.falaleev.grammar.Grammar;
-import ru.falaleev.grammar.Rule;
-import ru.falaleev.nonterminal.NonTerminal;
-import ru.falaleev.terminals.Terminal;
+import ru.falaleev.core.alphabets.NonTerminalAlphabet;
+import ru.falaleev.core.alphabets.TerminalAlphabet;
+import ru.falaleev.core.grammar.Grammar;
+import ru.falaleev.core.grammar.Rule;
+import ru.falaleev.core.nonterminal.NonTerminal;
+import ru.falaleev.core.terminals.Terminal;
 
 import java.util.*;
 
@@ -81,26 +81,34 @@ public class StateMachine {
      * @param s Строка, проверяемая автоматом
      * @return Список пройденных состояний
      */
-    public List<NonTerminal> process(String s) {
-        List<NonTerminal> states = new ArrayList<>(s.length());
+    public List<StateMachineMove> process(String s) {
+        List<StateMachineMove> moves = new ArrayList<>(s.length());
 
         //Текущее состояние
         NonTerminal current = NonTerminal.S;
-        states.add(current);
+        moves.add(new StateMachineMove(current));
 
         //Цикл по символам строки
         for (char c : s.toCharArray()) {
             Map<Terminal, NonTerminal> rulesForCurrentState = rules.get(current);
-            current = rulesForCurrentState.entrySet()
+
+            class TerminalHolder{
+                private Terminal terminal;
+            }
+            TerminalHolder holder = new TerminalHolder();
+
+            NonTerminal next = rulesForCurrentState.entrySet()
                     .stream()
                     .filter(entry -> entry.getKey().match(c)) //Поиск терминала, под который подходит символ
+                    .peek(entry -> holder.terminal = entry.getKey())
                     .map(Map.Entry::getValue) //Получение нетерминала из правила, соответствующего найденному нетерминалу
                     .findFirst()
                     .orElse(NonTerminal.FAIL); //Если символ не подошёл ни одному терминалу, то FAIL.
-            states.add(current);
+            moves.add(new StateMachineMove(current, c, holder.terminal, next));
+            current = next;
         }
 
-        return states;
+        return moves;
     }
 
     /**
@@ -110,16 +118,18 @@ public class StateMachine {
      * @param str проверяемая строка
      */
     public boolean check(String str) {
-        List<NonTerminal> states = process(str);
+        List<StateMachineMove> states = process(str);
         return isLastFinal(states);
     }
 
     /**
      * Проверяет, является ли последнее состояние финальным
      *
-     * @param states список состояний, пройденных автоматом
+     * @param moves список состояний, пройденных автоматом
      */
-    public boolean isLastFinal(List<NonTerminal> states) {
-        return states.get(states.size() - 1).isFinal();
+    public boolean isLastFinal(List<StateMachineMove> moves) {
+        StateMachineMove lastMove = moves.get(moves.size() - 1);
+        if(lastMove.to!=null) return lastMove.to.isFinal();
+        return lastMove.from.isFinal();
     }
 }
